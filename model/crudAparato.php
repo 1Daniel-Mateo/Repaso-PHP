@@ -6,38 +6,56 @@
   function registrarAparato($serial, $placa, $descripcion1, $marca, $modelo, $descripcion2){
     global $conn;
     $insertar = "insert into aparato values(null,?,?,?,?,?,?)";
-    $stmt = mysqli_query($conn,$insertar);
-    mysqli_stmt_bind_param($stmt,sssss, $serial, $placa, $descripcion1, $marca, $modelo, $descripcion2);
-    $registro = mysqli_stmt_execute($stmt)
-
+    $stmt = mysqli_prepare($conn, $insertar);
+    mysqli_stmt_bind_param($stmt,'ssssss',$serial, $placa, $descripcion1, $marca, $modelo, $descripcion2);
+    $registro = mysqli_stmt_execute($stmt);
+    
     
     if ($registro) {
-      echo "Registro exitoso";
+      header('Location: ../index.php');
+      exit();
     } else {
       echo "error de registro";
     }
-    
+
+    mysqli_stmt_close($stmt);
+
   }
 
+  function actualizar($Id,$Userial,$Uplaca,$Udescripcion1,$Umarca,$Umodelo,$Udescripcion2){
+    global $conn;
+    $actulizar = "update aparato set NSerial='$Userial',placa='$Uplaca',descripElemento='$Udescripcion1',marca='$Umarca',modelo='$Umodelo',descripAdicional='$Udescripcion2' where idActivo='$Id'";
+    $stmt = mysqli_prepare($conn, $actualizar);
+    mysqli_stmt_bind_param($stmt,$Id,$Userial,$Uplaca,$Udescripcion1,$Umarca,$Umodelo,$Udescripcion2);
+    $resultado=mysqli_stmt_execute($stmt);
 
+    if ($resultado) {
+      header('Location: ../index.php');
+      exit();
+    } else {
+      echo "error de actualizacion";
+    }
+
+    mysqli_stmt_close($stmt);
+  }
 
   //consulta especifica 
-  $consulta = "select * from aparato where idActivo";
-  $resultado=mysqli_query($conn, $consulta);
-
-  if (mysqli_num_rows($resultado) > 0) {
-    while ($fila = mysqli_fetch_assoc($resultado)) {
-      echo "<tr>". $fila["idActivo"]."</tr>";
-      echo "<tr>". $fila["NSerial"]."</tr>";
-      echo "<tr>". $fila["placa"]."</tr>";
-      echo "<tr>". $fila["descripElemento"]."</tr>";
-      echo "<tr>". $fila["marca"]."</tr>";
-      echo "<tr>". $fila["modelo"]."</tr>";
-      echo "<tr>". $fila["descripAdicional"]."</tr>";
+  function FunctionName($Id) {
+    $consulta = "select * from aparato where idActivo='$Id'";
+    $resultado=mysqli_query($conn, $consulta);
+    
+    if (mysqli_num_rows($resultado)>0) {
+      $fila = mysqli_fetch_assoc($resultado);
+      return $fila;
+    } else {
+      return false;
     }
-  } else {
-     echo "error los datos que buscas no existen"
+    
   }
+  
+  
+
+  
   
 
 ?>

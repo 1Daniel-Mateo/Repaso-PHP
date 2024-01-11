@@ -23,39 +23,39 @@
 
   <div class="card">
   <div class="card-body">
-  <form>
+  <form action="controller/crudControlador.php" method="POST">
 
-  <div class="mb-3">
+  <div class="mb-3" >
     <label for="serial" class="form-label">Numero serial</label>
-    <input type="text" class="form-control" id="serial">
+    <input type="text" class="form-control" id="serial" name="serial">
   </div>
 
   <div class="mb-3">
     <label for="placa" class="form-label">Placa</label>
-    <input type="text" class="form-control" id="placa">
+    <input type="text" class="form-control" id="placa" name="placa">
   </div>
 
   <div class="mb-3">
     <label for="descripcion1" class="form-label">descripcion de elemento</label>
-    <input type="text" class="form-control" id="$descripcion1">
+    <input type="text" class="form-control" id="descripcion1" name="descripcion1">
   </div>
 
   <div class="mb-3">
     <label for="marca" class="form-label">Marca</label>
-    <input type="text" class="form-control" id="marca">
+    <input type="text" class="form-control" id="marca" name="marca">
   </div>
 
   <div class="mb-3">
     <label for="modelo" class="form-label">Modelo</label>
-    <input type="text" class="form-control" id="modelo">
+    <input type="text" class="form-control" id="modelo" name="modelo">
   </div>
 
   <div class="mb-3">
     <label for="descripcion2" class="form-label">Descripcion Adicional</label>
-    <input type="text" class="form-control" id="descripcion2">
+    <input type="text" class="form-control" id="descripcion2" name="descripcion2">
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">agregar</button>
 </form>
   </div>
 </div>
@@ -68,10 +68,10 @@
       <th scope="col">#</th>
       <th scope="col">Serial</th>
       <th scope="col">Placa</th>
-      <th scope="col">descripcion de elemento</th>
-      <th scope="col">marca</th>
-      <th scope="col">modelo</th>
-      <th scope="col">descripcion adicional</th>
+      <th scope="col">Descripcion de elemento</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Descripcion adicional</th>
       <th scope="col">Editar</th>
       <th scope="col">Eliminar</th>
     </tr>
@@ -92,7 +92,7 @@
       <td><?php echo $value["marca"]?></td>
       <td><?php echo $value["modelo"]?></td>
       <td><?php echo $value["descripAdicional"]?></td>
-      <td><button type="button" class="btn btn-primary">editar</button></td>
+      <td><a href="views/actualizar.php?idActivo=<?php echo $fila['idActivo']; ?>"><button type="button" class="btn btn-primary">editar</button></a></td>
       <td><button type="button" class="btn btn-danger">eliminar</button></td>
     </tr>
     <?php endforeach; ?>
