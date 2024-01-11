@@ -1,3 +1,7 @@
+<?php
+    require_once ('model/conexion.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,48 +20,92 @@
 
     
         <article>
-    <form action="">
-        <label for=""></label>
-        <input type="text">
-        <label for=""></label>
-        <input type="text">
-        <label for=""></label>
-        <input type="text">
-        <label for=""></label>
-        <input type="text">
 
-        <button>Registrar</button>
-    </form>
+  <div class="card">
+  <div class="card-body">
+  <form>
+
+  <div class="mb-3">
+    <label for="serial" class="form-label">Numero serial</label>
+    <input type="text" class="form-control" id="serial">
+  </div>
+
+  <div class="mb-3">
+    <label for="placa" class="form-label">Placa</label>
+    <input type="text" class="form-control" id="placa">
+  </div>
+
+  <div class="mb-3">
+    <label for="descripcion1" class="form-label">descripcion de elemento</label>
+    <input type="text" class="form-control" id="$descripcion1">
+  </div>
+
+  <div class="mb-3">
+    <label for="marca" class="form-label">Marca</label>
+    <input type="text" class="form-control" id="marca">
+  </div>
+
+  <div class="mb-3">
+    <label for="modelo" class="form-label">Modelo</label>
+    <input type="text" class="form-control" id="modelo">
+  </div>
+
+  <div class="mb-3">
+    <label for="descripcion2" class="form-label">Descripcion Adicional</label>
+    <input type="text" class="form-control" id="descripcion2">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+</div>
+
     <br>
-
-    <?php
-    include_once('conexion.php')
-
-    $sql = "select idelectronicos,nombre,total from electronicos"
-    ?>
 
     <table class="table">
   <thead>
     <tr class="table-dark">
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Serial</th>
+      <th scope="col">Placa</th>
+      <th scope="col">descripcion de elemento</th>
+      <th scope="col">marca</th>
+      <th scope="col">modelo</th>
+      <th scope="col">descripcion adicional</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Eliminar</th>
     </tr>
   </thead>
+
+  
   <tbody>
+  <?php 
+  $consulta = "select * from aparato";
+  $resultado=mysqli_query($conn, $consulta);
+  if (mysqli_num_rows($resultado) > 0):?>
+    <?php foreach ($resultado as $key => $value):?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><?php echo $value["idActivo"]?></td>
+      <td><?php echo $value["NSerial"]?></td>
+      <td><?php echo $value["placa"]?></td>
+      <td><?php echo $value["descripElemento"]?></td>
+      <td><?php echo $value["marca"]?></td>
+      <td><?php echo $value["modelo"]?></td>
+      <td><?php echo $value["descripAdicional"]?></td>
+      <td><button type="button" class="btn btn-primary">editar</button></td>
+      <td><button type="button" class="btn btn-danger">eliminar</button></td>
     </tr>
+    <?php endforeach; ?>
+    <?php else: ?>
+      <p>No hay resultados en esta busqueda.</p>
+      <?php endif; ?>
   </tbody>
 </table>
 <br>
 
-    <button>Generar reporte de entrega</button>
+    <button type="button">Generar reporte de entrega</button>
 
     </article>
+    <script src="js/modal.js"></script>
 </body>
 </html>

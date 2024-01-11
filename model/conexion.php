@@ -1,19 +1,16 @@
 <?php
 
 $server = "localhost";
-$db = "itops";
 $user = "root";  // usuario de la base de datos
 $pass = "";   // contraseña del usuario anterior
+$db = "itop";
+
 
 // creamos una conexión a la BD
-$conn = mysqli_connect($server,$db,$user,$pass);
+$conn = mysqli_connect($server,$user,$pass,$db);
 
-if (!$conn) {
-    echo("coneccion fallida" , mysqli_connect_error());
-
-}else{
-    echo ("Conexion exitosa");
-    mysqli_close($conn)
+if ($conn->connect_errno) {
+    die("Conexión fallida: " . $conn->connect_errno);
 }
 
 ?>
