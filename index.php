@@ -1,5 +1,6 @@
 <?php
-    require_once ('model/conexion.php'); 
+    require_once ('model/conexion.php');
+    
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="descripcion1" class="form-label">descripcion de elemento</label>
+    <label for="descripcion1" class="form-label">Descripcion de elemento</label>
     <input type="text" class="form-control" id="descripcion1" name="descripcion1">
   </div>
 
@@ -55,7 +56,7 @@
     <input type="text" class="form-control" id="descripcion2" name="descripcion2">
   </div>
 
-  <button type="submit" class="btn btn-primary">agregar</button>
+  <button type="submit" class="btn btn-primary">Agregar</button>
 </form>
   </div>
 </div>
@@ -92,7 +93,7 @@
       <td><?php echo $value["marca"]?></td>
       <td><?php echo $value["modelo"]?></td>
       <td><?php echo $value["descripAdicional"]?></td>
-      <td><a href="views/actualizar.php?idActivo=<?php echo $fila['idActivo']; ?>"><button type="button" class="btn btn-primary">editar</button></a></td>
+      <td><a href="views/actualizar.php?idActivo=<?php echo $value['idActivo']; ?>"><button type="button" class="btn btn-primary">editar</button></a></td>
       <td><button type="button" class="btn btn-danger">eliminar</button></td>
     </tr>
     <?php endforeach; ?>
