@@ -94,7 +94,7 @@
       <td><?php echo $value["modelo"]?></td>
       <td><?php echo $value["descripAdicional"]?></td>
       <td><a href="views/actualizar.php?idActivo=<?php echo $value['idActivo']; ?>"><button type="button" class="btn btn-primary">editar</button></a></td>
-      <td><button type="button" class="btn btn-danger">eliminar</button></td>
+      <td><a href="controller/crudControlador.php?idActivo=<?php echo $value['idActivo']; ?>"><button type="button" class="btn btn-danger">eliminar</button></a></td>
     </tr>
     <?php endforeach; ?>
     <?php else: ?>

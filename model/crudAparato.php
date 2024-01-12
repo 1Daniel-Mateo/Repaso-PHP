@@ -7,7 +7,7 @@ function registrarAparato($serial, $placa, $descripcion1, $marca, $modelo, $desc
 {
 
   global $conn;
-  $insertar = "insert into aparato values(null,?,?,?,?,?,?)";
+  $insertar = "INSERT INTO aparato VALUES(null,?,?,?,?,?,?)";
   $stmt = mysqli_prepare($conn, $insertar);
   mysqli_stmt_bind_param($stmt, 'ssssss', $serial, $placa, $descripcion1, $marca, $modelo, $descripcion2);
   $registro = mysqli_stmt_execute($stmt);
@@ -55,6 +55,27 @@ function consulta($id)
   }
 
 }
+
+//modelo eliminar
+function eliminar($idE){
+  global $conn;
+  $idE = mysqli_real_escape_string($conn, $idE);
+  $aparato = consulta($idE);
+
+  if($aparato != false){
+    $idActivo = $aparato['idActivo'];  // Obtén el ID directamente del arreglo asociativo
+
+    $eliminar = "DELETE FROM aparato WHERE idActivo='$idActivo'";
+    $borrado = mysqli_query($conn, $eliminar);
+
+    if ($borrado) {
+      return "Los datos fueron eliminados";
+    } else {
+      return "Ha ocurrido un error y no podemos eliminar";
+    }
+  }
+}
+
 
 
 

@@ -27,8 +27,6 @@ if (isset($_POST)) {
 
 
 //Controlador de actualizacion
-
-
 $idU = $_POST['idActivo'];
 $Userial = $_POST['Userial'];
 $Uplaca = $_POST['Uplaca'];
@@ -50,14 +48,24 @@ if (isset($_POST)) {
 }
 
 
+//controlador eliminar
+if (isset($_GET['idActivo'])) {
+    $idEliminar = $_GET['idActivo'];
 
-// if ($resultado) {
-//     header('Location: ../index.php');
-//     exit();
-//   } else {
-//     echo "error de actualizacion";
-// }
+    // Llama a la función eliminar y obtiene el resultado
+    $resultadoEliminar = eliminar($idEliminar);
 
+    // Redirige a la página principal con un mensaje según el resultado
+    if ($resultadoEliminar === true) {
+        header('Location: ../index.php?m=1');
+    } else {
+        header('Location: ../index.php?=0');    
+    }
+} else {
+    // Si no se proporciona un ID, redirige a la página principal
+    header('Location: ../index.php');
+   
+}
 
 
 
